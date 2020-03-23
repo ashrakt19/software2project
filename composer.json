@@ -32,16 +32,15 @@
         "laravel": {
             "dont-discover": []
         }
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/"
-        },
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ]
-    },
+    }, "autoload": 
+{         "psr-4": 
+{             "App\\": "app/"         },        
+ "classmap":
+ [             "database/seeds",            
+ "database/factories"         ],        
+ "files": [            
+ "app/helpers/helpers.php"   
+      ]     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
