@@ -12,15 +12,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+route::namespace('BackEnd')->prefix('admin')->middleware('admin')->group(function(){
+    route::get('/','Home@index')->name('admin.home');//home page  
+    route::resource('users','Users')->except(['show','delete']);
+    route::resource('categories','Categories')->except(['show','delete']);
+    route::resource('skills','Skills')->except(['show','delete']);
+    route::resource('tags','tags')->except(['show','delete']);
+    route::resource('pages','pages')->except(['show','delete']);
+    route::resource('messages','Messages')->only(['index','destroy','edit']);
+    Route::post('messages/replay/{id}', 'Messages@replay')->name('message.replay');
+    route::resource('videos','videos')->except(['show','delete']);
+    route::post('comments','videos@commentStore')->name('comment.store');
+    route::post('comments/{id}','videos@commentUpdate')->name('comment.update'); 
+    route::get('comments/{id}','videos@commentDelete')->name('comment.delete');
 });
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/','HomeController@welcome')->name('frontend.landing');
