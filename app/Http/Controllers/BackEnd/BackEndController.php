@@ -30,6 +30,11 @@ public function create()
        $append=$this->append();
         return view('back-end.'.$this->getClassName().'.create')->with($append);
     }
+public function destroy($id)     
+{        $this->model->findOrFail($id)->delete();  
+       return redirect(route($this->getClassName().'.index'));     
+}
+
 protected function getClassName()
     {
         return  str::plural($this->pluralmodulname());
