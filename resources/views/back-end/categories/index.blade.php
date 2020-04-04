@@ -55,7 +55,7 @@ $pageDesc='Here you can add/edit/delete categories';
                             {{csrf_field()}}
                             {{ method_field('delete') }}
                               <button type="submit" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Remove">
-                                <i class="material-icons">close</i>
+                                <i class="material-icons">remove</i>
                               </button>
                            </form>
                           </td> 
