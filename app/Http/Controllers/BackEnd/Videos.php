@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 
 class Videos extends BackEndController
 {
- 
+ use CommentTrait;
 public function __construct(Video $model)
     {
     parent::__construct($model);
@@ -32,11 +32,13 @@ protected function append()
              'selectedSkills'=>[],
              'tags'=>Tag::get(),
              'selectedTags'=>[],
+             'comments'=>[],
             
           ];
         if(request()->route()->parameter('video')){
             $array['selectedSkills']=$this->model->find(request()->route()->parameter('video'))->skills()->pluck('skills.id')->toArray();
             $array['selectedTags']=$this->model->find(request()->route()->parameter('video'))->tags()->pluck('tags.id')->toArray();
+            $array['comments']=$this->model->find(request()->route()->parameter('video'))->comments()->orderBy('id','desc')->with('user')->get();//جت دي بتجيبلي الداتا من الداتا بيزززز
            
         }
         
