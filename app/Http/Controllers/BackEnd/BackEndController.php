@@ -35,6 +35,16 @@ public function destroy($id)
        return redirect(route($this->getClassName().'.index'));     
 }
 
+public function edit($id)
+    {
+        $folderName = $this->getClassName();
+        $user=$this->model->findOrFail($id);
+        //$user=$this->model::findOrFail($id);    //OR try this
+        $append=$this->append();
+        return view('back-end.' . $folderName . '.edit')->with('user',$user)->with($append);
+
+    }
+
 protected function getClassName()
     {
         return  str::plural($this->pluralmodulname());

@@ -54,6 +54,21 @@ public function store(Store $request){
     return redirect(route('videos.index'));
 }
 
+public function update($id , Update $request){ 
+    $requestArray = $request->all();
+    if($request->hasFile('image'))
+    {
+        $fileName = $this->uploadImage($request);
+            $requestArray = ['image' => $fileName] + $requestArray;
+
+    }
+    $user=Video::findOrFail($id);
+    $this->synctaskskills($user , $requestArray);
+    $user->update($requestArray);
+  
+        return redirect(route('videos.index'));
+}
+
 protected function uploadImage($request){
     $file = $request->file('image');
         $fileName = time().str::random('10').'.'.$file->getClientOriginalExtension();
