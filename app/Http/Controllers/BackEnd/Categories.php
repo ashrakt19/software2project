@@ -22,4 +22,11 @@ public function store(Store $request){
     return redirect(route('categories.index'));
 }
 
+public function update($id , Store $request){
+    $user=Category::findOrFail($id);
+    $requestArray = $request->all();
+
+    $user->update($requestArray);
+        return redirect(route('categories.index'));
+}
 }
