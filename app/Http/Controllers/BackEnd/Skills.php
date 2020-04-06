@@ -22,5 +22,13 @@ public function store(Store $request){
     return redirect(route('skills.index'));
 }
 
+public function update($id , Store $request){
+    $user=Skill::findOrFail($id);
+    $requestArray = $request->all();
+
+    $user->update($requestArray);
+        return redirect(route('skills.index'));
+}
+
 
 }
