@@ -32,7 +32,7 @@ $pageDesc='Here you can add/edit/delete tags';
                         ID
                     </th>
                     <th>
-                        Name
+                        name
                     </th>
                    
                     <th class="text-right">
