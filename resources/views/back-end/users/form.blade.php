@@ -6,7 +6,7 @@
                       <div class="col-md-6">
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating" >Username</label>
-                          <input type="text" class="form-control @error($input) is-invalid @enderror" name="{{$input}}" value="" class="form-control">
+                          <input type="text" class="form-control @error($input) is-invalid @enderror" name="{{$input}}" value="{{isset($user) ? $user->{$input} : ''}}" class="form-control">
                           @error($input)
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -20,7 +20,7 @@
                       <div class="col-md-6">
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating" >Email address</label>
-                          <input type="email" class="form-control @error($input) is-invalid @enderror" name="{{$input}}" value="" class="form-control">
+                          <input type="email" class="form-control @error($input) is-invalid @enderror" name="{{$input}}" value="{{isset($user) ? $user->{$input} : ''}}" class="form-control">
                           @error($input)
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

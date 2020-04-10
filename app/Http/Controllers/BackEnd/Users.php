@@ -25,8 +25,14 @@ public function store(Store $request)
 
                 return redirect()->route('users.index');
             }
-        
- 
-   
+ public function update ($ id, Update $ request) 
+ {$ user = $ this-> model-> findOrFail ($ id);
+  $ requestArray = $ request-> all ();
+   if (isset ($ requestArray ['password']) && $ requestArray ['password']! = '') 
+  {$ requestArray ['password'] = Hash :: make ($ requestArray ['password']);
+   }
+   else {unset ($ requestArray ['password']); //If the bass is inside an empty shell of opinions so that it does not exist
+} $ user-> update ($ requestArray);
+ return redirect (route ('users.index')); }
 
 }
