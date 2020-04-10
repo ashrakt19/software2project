@@ -9,7 +9,12 @@ trait CommentTrait{
       //  return redirect()->route('videos.edit' , ['id' => $requestArray['video_id'] , '#comments']);
        return back();
     }
-    
+    public function commentDelete($id){
+        $user  = Comment::findOrFail($id);
+        $user->delete();
+       // return redirect()->route('videos.edit' , ['id' => $user->video_id , '#comments']);
+        return back();
+    }
     public function commentUpdate($id,Store $request){
         $user  = Comment::findOrFail($id);
         $user->update($request->all());

@@ -12,6 +12,10 @@
                         data-original-title="Edit Comment">
                     <i class="material-icons">edit</i>
                 </button>
+            <a href="{{ route('comment.delete' , ['id' => $comment->id]) }}" rel="tooltip" title="" class="btn btn-white btn-link btn-sm"
+                        data-original-title="Remove Comment">
+                    <i class="material-icons">close</i>
+                </a>
             </td>
         </tr>
         <tr style="display: none">
