@@ -1,24 +1,24 @@
-@extends('back-end.layout.app')
-@section('title')
- Home page
-@endsection 
-@push('css')
-    <style>
-        a{
-            color:white !important;
-        }
-   </style>
-@endpush
+@extends('layouts.app')
+@section('title' , 'all videos')
+
 @section('content')
-   @component('back-end.layout.header')
-        @slot('nav_title')
-          Home page
-        @endslot
-   @endcomponent
-   <h1>Home Page</h1>
+  
+    <div class="section section-buttons">
+      <div class="container">
+        <div class="title">
+          <h2>Latest Videos</h2>
+          @if(request()->has('search') && request()->get('search') != '')
+          <p style="margin-top: 10px">
+                        you are search on  <b>{{ request()->get('search') }}</b> |  <a href="{{ route('home') }}"> Reset </a>
+                    </p>
+          @endif
+
+        </div>
+        @include('front-end.shared.video-row')
+      </div>
+      </div>
+   
+    
+     
 @endsection
-@push('js')
-    <script>
-        alert('welcome');
-        </script>
-@endpush
+

@@ -1,8 +1,8 @@
 @extends('back-end.layout.app')
 
 @php 
-$pagetitle =" create User";
-$pageDesc='Here you can create user';
+$pagetitle =" create category";
+$pageDesc='Here you can create category';
 
 @endphp
 @section('title')

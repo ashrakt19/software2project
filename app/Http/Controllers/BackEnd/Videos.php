@@ -6,6 +6,7 @@ namespace App\Http\Controllers\BackEnd;
 use App\Http\Requests\BackEnd\Videos\Store;
 use App\Http\Requests\BackEnd\Videos\Update;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Skill;
 use App\Models\Tag;
 use App\Models\Video;
@@ -14,7 +15,7 @@ use Illuminate\Http\Request;
 
 class Videos extends BackEndController
 {
- 
+    use CommentTrait;
 public function __construct(Video $model)
     {
     parent::__construct($model);
@@ -32,17 +33,17 @@ protected function append()
              'selectedSkills'=>[],
              'tags'=>Tag::get(),
              'selectedTags'=>[],
-            
+             'comments'=>[],
           ];
         if(request()->route()->parameter('video')){
             $array['selectedSkills']=$this->model->find(request()->route()->parameter('video'))->skills()->pluck('skills.id')->toArray();
             $array['selectedTags']=$this->model->find(request()->route()->parameter('video'))->tags()->pluck('tags.id')->toArray();
-           
+            $array['comments']=$this->model->find(request()->route()->parameter('video'))->comments()->orderBy('id','desc')->with('user')->get();//جت دي بتجيبلي الداتا من الداتا بيزززز
+
         }
         
         return $array;
 }
-
 
 
 
@@ -54,6 +55,21 @@ public function store(Store $request){
     return redirect(route('videos.index'));
 }
 
+
+public function update($id , Update $request){ 
+    $requestArray = $request->all();
+    if($request->hasFile('image'))
+    {
+        $fileName = $this->uploadImage($request);
+            $requestArray = ['image' => $fileName] + $requestArray;
+
+    }
+    $user=Video::findOrFail($id);
+    $this->synctaskskills($user , $requestArray);
+    $user->update($requestArray);
+  
+        return redirect(route('videos.index'));
+}
 protected function uploadImage($request){
     $file = $request->file('image');
         $fileName = time().str::random('10').'.'.$file->getClientOriginalExtension();

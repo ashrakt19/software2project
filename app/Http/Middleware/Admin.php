@@ -15,11 +15,13 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-       if(auth()->guest()){
-           return redirect(route('/login'));
-       }
-     
-      
+        if(auth()->guest()){
+            return redirect(route('/login'));
+        }
+        if(auth()->user()->group !='admin'){
+         return redirect(route('home'));
+        }
+       
       
         return $next($request);
     }

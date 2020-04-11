@@ -34,7 +34,14 @@ public function destroy($id)
 {        $this->model->findOrFail($id)->delete();  
        return redirect(route($this->getClassName().'.index'));     
 }
+public function edit($id)
+    {
+        $folderName = $this->getClassName();
+        $user=$this->model->findOrFail($id);
+        $append=$this->append();
+        return view('back-end.' . $folderName . '.edit')->with('user',$user)->with($append);
 
+    }
 protected function getClassName()
     {
         return  str::plural($this->pluralmodulname());

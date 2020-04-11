@@ -54,8 +54,8 @@ $pageDesc='Here you can add/edit/delete categories';
                             <form action="{{route('categories.destroy', $user)}}" method="POST">
                             {{csrf_field()}}
                             {{ method_field('delete') }}
-                              <button type="submit" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Remove">
-                                <i class="material-icons">remove</i>
+                            <button type="submit" rel="tooltip" title="" class="btn btn-info"data-original-title="Remove">
+                                <i class="material-icons">close</i>
                               </button>
                            </form>
                           </td> 

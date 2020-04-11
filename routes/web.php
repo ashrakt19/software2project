@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,19 @@ route::namespace('BackEnd')->prefix('admin')->middleware('admin')->group(functio
     route::get('comments/{id}','videos@commentDelete')->name('comment.delete');
 });
 Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/','HomeController@welcome')->name('frontend.landing');
+Route::get('category/{id}', 'HomeController@category')->name('front.category');
+Route::get('skill/{id}', 'HomeController@skill')->name('front.skill');
+Route::get('tag/{id}', 'HomeController@tag')->name('front.tags');
+Route::get('video/{id}', 'HomeController@video')->name('frontend.video');
+Route::get('contact-us', 'HomeController@messageStore')->name('contact.store');
+Route::get('/', 'HomeController@welcome')->name('frontend.landing');
+Route::get('page/{id}/{slug?}', 'HomeController@page')->name('front.page');
+Route::get('profile/{id}/{slug?}', 'HomeController@profile')->name('front.profile');
+
+Route::middleware('auth')->group(function () {
+    Route::post('comments/{id}', 'HomeController@commentUpdate')->name('front.commentUpdate');
+    Route::post('comments/{id}/create', 'HomeController@commentStore')->name('front.commentStore');
+    Route::post('profile', 'HomeController@profileUpdate')->name('profile.update');
+});

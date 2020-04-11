@@ -25,6 +25,22 @@ public function store(Store $request)
 
                 return redirect()->route('users.index');
             }
+   
+public function update($id,Update $request)
+            {
+            $user=$this->model->findOrFail($id);
+            $requestArray = $request->all();
+            if(isset($requestArray['password'])&& $requestArray['password']!=''){
+             $requestArray['password'] =  Hash::make($requestArray['password']);
+    
+            }
+            else
+            {
+                unset($requestArray['password']); //لو الباس داخل فاضي هشيله من الاراي عشان مياثرش ع الموجود
+            }
+            $user->update($requestArray);
+            return redirect(route('users.index'));
+           }
         
  
    
