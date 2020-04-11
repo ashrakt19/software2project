@@ -21,12 +21,14 @@ public function store(Store $request){
 
     return redirect(route('tags.index'));
 }
+
 public function update($id , Store $request){
     $user=Tag::findOrFail($id);
     $requestArray = $request->all();
+
     $user->update($requestArray);
         return redirect(route('tags.index'));
 }
-}
+
 
 }
