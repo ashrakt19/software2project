@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-class BackEndController extends Controlle
+class BackEndController extends Controller
 {
     protected $model;
 public function __construct(Model $model)
