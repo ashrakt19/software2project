@@ -1,13 +1,13 @@
 @extends('back-end.layout.app')
 
-@php 
+@php
 $pagetitle ="Edit Posts ";
 $pageDesc='Here you can Edit Posts';
 
 @endphp
 @section('title')
 {{$pagetitle}}
-@endsection 
+@endsection
 
 @section('content')
 
@@ -18,17 +18,17 @@ $pageDesc='Here you can Edit Posts';
    @endcomponent
 
    @component('back-end.shared.edit' , ['pagetitle' => $pagetitle , 'pageDesc' => $pageDesc])
-                
+
                 <div class="card-body">
                   <form action="{{route('videos.update', $user->id)}}" method="POST" enctype="multipart/form-data" >
                   {{ method_field('put') }}
                       @include('back-end.videos.form')
                     <button type="submit" class="btn btn-primary pull-right">Udate </button>
                     <div class="clearfix"></div>
-                    
+
                     </form>
-                
-                    @slot('md4')   
+
+                    @slot('md4')
                     @php
                       $url=getyoutubeid($user->youtube)
                     @endphp
@@ -37,7 +37,17 @@ $pageDesc='Here you can Edit Posts';
                        @endif
                        <img src="{{url('uploads/'.$user->image)}}" style="width: 400px;height:200px" />
                     @endslot
-                                
+
 @endcomponent
 
+@component('back-end.shared.edit' , ['pagetitle' => "comments" , 'pageDesc' => "here we can control comment"])
+
+       @include('back-end.comments.index')
+
+       @slot('md4')
+
+                    @include('back-end.comments.create')
+                    @endslot
+
+       @endcomponent
 @endsection
