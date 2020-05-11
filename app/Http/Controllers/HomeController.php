@@ -88,7 +88,7 @@ public function commentStore($id , CommentStore $request)
             return redirect()->route('frontend.video' , ['id' => $video->id , '#commnets']);
 
         }
-    
+
     public function welcome(){
         $videos=Video::orderBy('id','desc')->paginate(6);
         $videos_count=Video::count();
@@ -96,5 +96,10 @@ public function commentStore($id , CommentStore $request)
         $comments_count=Comment::count();
         return view('welcome',compact('videos','videos_count','tags_count','comments_count'));
        }
+       public function page($id,$slug = null){
+        $page=Page::findOrFail($id);
+        return view('front-end.page.index',compact('page',$page));
+     }
+
 
 }
