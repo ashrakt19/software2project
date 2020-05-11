@@ -18,6 +18,12 @@ public function store(Store $request){
 
     return redirect(route('pages.index'));
 }
+public function update($id , Store $request){
+    $user=Page::findOrFail($id);
+    $requestArray = $request->all();
 
+    $user->update($requestArray);
+        return redirect(route('pages.index'));
+}
 
 }
