@@ -59,6 +59,8 @@
                 </div>
               </div>
     <br><br>
+@include('front-end.video.comments')
+   @include('front-end.video.create-comment')
     </div>
  </div>
 @endsection
