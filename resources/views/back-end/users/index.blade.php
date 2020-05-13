@@ -6,7 +6,7 @@ $pageDesc='Here you can add/edit/delete users';
 @endphp
 @section('title')
 {{$pagetitle}}
-@endsection 
+@endsection
 
 @section('content')
 
@@ -44,7 +44,7 @@ $pageDesc='Here you can add/edit/delete users';
                         control
                     </th>
                 </tr></thead>
-                @foreach($users as $user) 
+                @foreach($users as $user)
                              <tr>
                           <td>{{$user->id}}</td>
                           <td>{{$user->name}}</td>
@@ -61,7 +61,7 @@ $pageDesc='Here you can add/edit/delete users';
                                 <i class="material-icons">close</i>
                               </button>
                            </form>
-                          </td> 
+                          </td>
                     </tr>
                 @endforeach
                 </tbody>
