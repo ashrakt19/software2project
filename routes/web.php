@@ -41,5 +41,7 @@ Route::get('profile/{id}/{slug?}', 'HomeController@profile')->name('front.profil
 Route::middleware('auth')->group(function () {
     Route::post('comments/{id}', 'HomeController@commentUpdate')->name('front.commentUpdate');
     Route::post('comments/{id}/create', 'HomeController@commentStore')->name('front.commentStore');
+    route::get('comments/{id}','HomeController@commentsDelete')->name('front.commentsDelete');
     Route::post('profile', 'HomeController@profileUpdate')->name('profile.update');
 });
+
