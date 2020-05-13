@@ -23,6 +23,16 @@
                   <strong> <p style="color:firebrick ;font-size:20px">{{ $comment->comment }} </p></strong>
 
 
+                  
+                  @if(auth()->user())
+                       @if((auth()->user()->group =='admin')||auth()->user()->id==$comment->user->id)
+
+                         <a href="{{ route('front.commentsDelete' , ['id' => $comment->id]) }}" rel="tooltip" title=""  class="btn btn-white btn-link btn-sm" data-original-title="Remove Comment">
+                              #Delete
+                         </a>
+                        @endif
+                        @endif
+
 
 
 

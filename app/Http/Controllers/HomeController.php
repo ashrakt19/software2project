@@ -89,6 +89,15 @@ public function commentStore($id , CommentStore $request)
 
         }
 
+        public function commentsDelete($id)
+        {
+            $user  = Comment::findOrFail($id);
+        $user->delete();
+       // return redirect()->route('videos.edit' , ['id' => $user->video_id , '#comments']);
+        return back();
+    
+        }
+
     public function welcome(){
         $videos=Video::orderBy('id','desc')->paginate(6);
         $videos_count=Video::count();
