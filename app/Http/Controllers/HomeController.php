@@ -77,6 +77,16 @@ public function skill($id )
         })->/*بتاخد اسم الريليشن بين الاسكيلز والفيديو*/orderBy('id','desc')->paginate(30);
         return view('front-end.skill.index',with(['videos'=>$videos,'skill'=>$skill]));
     }
+    public function commentUpdate($id  ,CommentStore $request )
+        {
+            $comment = Comment::findOrFail($id);
+            if(($comment->user_id == auth()->user()->id) || auth()->user()->group == 'admin'){
+                $comment->update(['comment' => $request->comment]);
+
+           }
+
+           return redirect()->route('frontend.video' , ['id' => $comment->video_id , '#commnets']);
+        }
 public function commentStore($id , CommentStore $request)
         {
             $video = Video::findOrFail($id);
